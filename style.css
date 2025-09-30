@@ -1,0 +1,220 @@
+/* Nạp font GungSuh từ thư mục font */
+@font-face {
+  font-family: "GungSuh";
+  src: url("./font/gungsuh.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  font-family: "GungSuh", serif;
+}
+
+/* Control Box */
+.control-box {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  padding: 15px 25px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.control-box button {
+  font-size: 22px;
+  font-weight: bold;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: linear-gradient(180deg, #fefefe, #dcdcdc);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+}
+.control-box button:hover {
+  background: linear-gradient(180deg, #ffffff, #bbbbbb);
+  transform: translateY(-2px);
+}
+.control-box button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Detector */
+.lie-detector {
+  width: 220px;
+  height: 220px;
+  background: rgba(0, 128, 0, 0.5);
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+.lie-detector.show {
+  opacity: 1;
+}
+.number {
+  font-size: 40px;
+  font-weight: bold;
+  color: red;
+}
+.message {
+  font-size: 18px;
+  color: red;
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+/* Captcha popup */
+#captchaPopup {
+  background: rgba(30, 30, 30, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 10px;
+  padding: 20px;
+  position: absolute;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Chỉ chữ trong captcha dùng font GungSuh */
+#captchaCanvas, #captchaOverlay {
+  font-family: "GungSuh", serif;
+}
+
+.captcha-timer {
+  font-size: 28px;
+  font-weight: bold;
+  color: yellow;
+  margin-bottom: 10px;
+}
+.captcha-text {
+  color: #0077cc;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+.captcha-input input {
+  font-size: 18px;
+  padding: 5px 10px;
+  width: 180px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* Fail popup */
+.fail-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.85);
+  padding: 25px 30px;
+  border-radius: 12px;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+.fail-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ff4081;
+  margin-bottom: 15px;
+  text-shadow: 0 0 8px rgba(255,64,129,0.8);
+}
+
+/* Flip Clock */
+.flip-clock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  background: rgba(20, 20, 20, 0.9);
+  padding: 12px 20px;
+  border-radius: 8px;
+}
+.flip-clock .digit, .flip-clock .separator {
+  font-family: monospace;
+  font-size: 32px;
+  font-weight: bold;
+  color: #fff;
+  background: #222;
+  padding: 8px 12px;
+  border-radius: 4px;
+  box-shadow: inset 0 -2px 4px rgba(0,0,0,0.5), 0 2px 4px rgba(0,0,0,0.5);
+  position: relative;
+  overflow: hidden;
+}
+.flip-clock .separator {
+  background: transparent;
+  box-shadow: none;
+  font-size: 30px;
+  padding: 0 4px;
+}
+.flip-clock .digit.flip {
+  animation: flip 0.5s ease;
+}
+@keyframes flip {
+  0% { transform: rotateX(0deg); }
+  50% { transform: rotateX(-90deg); }
+  100% { transform: rotateX(0deg); }
+}
+
+/* Success popup */
+#successPopup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.35);
+  font-family: Arial, sans-serif;
+  z-index: 1000;
+}
+.success-header {
+  background: linear-gradient(to bottom, #3bb7d8, #1796c5);
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+}
+.success-footer {
+  background: #f7f7f7;
+  text-align: center;
+  padding: 15px;
+}
+#successReset {
+  background: linear-gradient(to bottom, #a6e26f, #6fbf3d);
+  border: 1px solid #5ca832;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 8px 20px;
+  cursor: pointer;
+  box-shadow: inset 0 1px #d8f7b8, 0 2px 4px rgba(0,0,0,0.25);
+  transition: all 0.2s ease-in-out;
+}
+#successReset:hover {
+  background: #5ca832;
+}

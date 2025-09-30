@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Lie Detector Demo</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="./script.js"></script>
+</head>
+<body>
+  <!-- Nút bấm -->
+  <div class="control-box">
+    <button id="startBtn">▶ Bắt đầu</button>
+    <button id="resetBtn" style="display:none;">↻ Làm lại</button>
+  </div>
+
+  <!-- Detector -->
+  <div class="lie-detector" id="detector" style="display:none;">
+    <div class="number" id="countdown">60</div>
+    <div class="message" id="message">거짓말 감지기가<br>발동 되었습니다.</div>
+  </div>
+
+  <!-- Captcha -->
+  <div class="captcha-popup" id="captchaPopup" style="display:none; position:absolute;">
+    <div id="captchaTimer" class="captcha-timer">60</div>
+    <div class="captcha-text">아래 이미지 안의 한글을<br>보이는 대로 입력하세요</div>
+    <div style="position:relative; display:inline-block;">
+      <canvas id="captchaCanvas" width="240" height="70"></canvas>
+      <canvas id="captchaOverlay" width="240" height="70" style="position:absolute; top:0; left:0; pointer-events:none;"></canvas>
+    </div>
+    <div class="captcha-input">
+      <input type="text" id="captchaInput" placeholder="여기에 입력" autofocus />
+    </div>
+  </div>
+
+  <!-- Fail -->
+  <div class="fail-popup" id="failPopup" style="display:none;">
+    <div class="fail-title">Bạn Đã Đi Tù</div>
+    <div id="flipTimer" class="flip-clock">
+      <div class="digit" id="minTens">0</div>
+      <div class="digit" id="minOnes">0</div>
+      <div class="separator">:</div>
+      <div class="digit" id="secTens">1</div>
+      <div class="digit" id="secOnes">0</div>
+    </div>
+  </div>
+
+  <!-- Success -->
+  <div id="successPopup" style="display:none;">
+    <div class="success-header">Bạn đã vượt qua bài kiểm tra!<br>Cảm ơn bạn đã tham gia.</div>
+    <div class="success-footer">
+      <button id="successReset">Xác nhận</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
